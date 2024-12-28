@@ -1,6 +1,6 @@
-package com.example.profilessoundequalizerapp.data.dao
+package com.example.profilessoundequalizerapp.model.dao
 
-import com.example.profilessoundequalizerapp.data.model.Profile
+import com.example.profilessoundequalizerapp.model.entity.Profile
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 

@@ -2,16 +2,13 @@ package com.example.profilessoundequalizerapp.ui.components
 
 import android.annotation.SuppressLint
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
-import com.example.profilessoundequalizerapp.data.dao.ProfileRepository
-import com.example.profilessoundequalizerapp.ui.screens.EditSoundProfileScreen
-import com.example.profilessoundequalizerapp.ui.screens.HomeScreen
-import com.example.profilessoundequalizerapp.ui.screens.NewProfileScreen
+import com.example.profilessoundequalizerapp.model.dao.ProfileRepository
+import com.example.profilessoundequalizerapp.view.EditSoundProfileScreen
+import com.example.profilessoundequalizerapp.view.HomeScreen
+import com.example.profilessoundequalizerapp.view.NewProfileScreen
 import kotlinx.coroutines.runBlocking
 
 @SuppressLint("StateFlowValueCalledInComposition")

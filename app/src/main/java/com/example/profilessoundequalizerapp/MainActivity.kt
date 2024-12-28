@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import com.example.profilessoundequalizerapp.data.dao.ProfileRepository
+import com.example.profilessoundequalizerapp.model.dao.ProfileRepository
 
 import com.example.profilessoundequalizerapp.ui.components.NavigationSetup
 import com.example.profilessoundequalizerapp.ui.theme.ProfilesSoundEqualizerAppTheme

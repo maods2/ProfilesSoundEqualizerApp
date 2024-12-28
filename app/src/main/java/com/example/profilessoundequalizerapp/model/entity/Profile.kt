@@ -1,4 +1,4 @@
-package com.example.profilessoundequalizerapp.data.model
+package com.example.profilessoundequalizerapp.model.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
