@@ -17,14 +17,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.Alignment
 import com.example.profilessoundequalizerapp.model.dao.ProfileRepository
 import com.example.profilessoundequalizerapp.model.entity.Profile
+import com.example.profilessoundequalizerapp.viewmodel.ProfilesViewModel
 
 @Composable
 fun HomeScreen(
-    repository: ProfileRepository,
+    profilesViewModel: ProfilesViewModel,
     onCreateNewProfile: () -> Unit,
     onEditProfile: (Profile) -> Unit
 ) {
-    val profiles = repository.profiles.collectAsState().value
+    val profiles = profilesViewModel.profileList.value
 
     Box(
         modifier = Modifier
@@ -42,9 +43,11 @@ fun HomeScreen(
                 modifier = Modifier.padding(bottom = 16.dp, top = 25.dp)
             )
 
-            LazyColumn {
-                items(profiles) { profile ->
-                    ProfileItem(profile = profile, onClick = { onEditProfile(profile) })
+            profiles?.let { nonNullProfiles ->
+                LazyColumn {
+                    items(nonNullProfiles) { profile ->
+                        ProfileItem(profile = profile, onClick = { onEditProfile(profile) })
+                    }
                 }
             }
         }

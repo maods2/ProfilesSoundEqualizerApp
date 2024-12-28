@@ -5,23 +5,25 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import com.example.profilessoundequalizerapp.model.dao.ProfileRepository
+import androidx.lifecycle.ViewModelProvider
 
 import com.example.profilessoundequalizerapp.ui.components.NavigationSetup
 import com.example.profilessoundequalizerapp.ui.theme.ProfilesSoundEqualizerAppTheme
+import com.example.profilessoundequalizerapp.viewmodel.ProfilesViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
         // Instanciando o ProfileRepository
-        val profileRepository = ProfileRepository()
+       // val profileRepository = ProfileRepository()
+        val profilesViewModel = ViewModelProvider(this)[ProfilesViewModel::class.java]
 
         setContent {
             ProfilesSoundEqualizerAppTheme {
                 Surface(color = MaterialTheme.colorScheme.background) {
-                    // Passando o profileRepository para o NavigationSetup
-                    NavigationSetup(profileRepository = profileRepository)
+                    NavigationSetup(profilesViewModel = profilesViewModel)
                 }
             }
         }
