@@ -11,9 +11,12 @@ import androidx.compose.ui.unit.dp
 import com.example.profilessoundequalizerapp.model.entity.Profile
 
 @Composable
-fun NewProfileScreen(onProfileCreated: (Profile) -> Unit, onNavigateBack: () -> Unit) {
+fun NewProfileScreen(
+    onProfileCreated: (Profile) -> Unit,
+    onNavigateBack: () -> Unit
+) {
     var profileName by remember { mutableStateOf("") }
-
+    val newProfile = Profile(name = profileName)
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -27,8 +30,12 @@ fun NewProfileScreen(onProfileCreated: (Profile) -> Unit, onNavigateBack: () -> 
             label = { Text("Profile Name") },
             modifier = Modifier.fillMaxWidth()
         )
+        ProfileScreen(
+            profile = newProfile,
+            onProfileUpdated = onProfileCreated
+        )
         Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = { if (profileName.isNotBlank()) onProfileCreated(Profile(name = profileName)) }) {
+        Button(onClick = { if (profileName.isNotBlank()) onProfileCreated(newProfile) }) {
             Text("Create Profile")
         }
         Spacer(modifier = Modifier.height(16.dp))

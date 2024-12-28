@@ -18,8 +18,7 @@ import com.example.profilessoundequalizerapp.model.entity.Profile
 @Composable
 fun ProfileScreen(
     profile: Profile,
-    onProfileUpdated: (Profile) -> Unit,
-    onNavigateBack: () -> Unit
+    onProfileUpdated: (Profile) -> Unit
 ) {
     var bass by remember { mutableStateOf(profile.bass) }
     var mid by remember { mutableStateOf(profile.mid) }
@@ -89,8 +88,6 @@ fun ProfileScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Button(onClick = onNavigateBack) {
-            Text("Cancel")
-        }
+  
     }
 }
