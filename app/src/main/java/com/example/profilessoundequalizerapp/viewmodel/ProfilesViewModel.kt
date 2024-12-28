@@ -14,7 +14,7 @@ class ProfilesViewModel(
     private val dao: ProfileDao
 ): ViewModel() {
 
-    val _profileDao = dao
+    private val _profileDao = dao
 
     val profileList: LiveData<List<Profile>> = _profileDao.getAllProfiles()
 
