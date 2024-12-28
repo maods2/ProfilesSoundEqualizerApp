@@ -1,6 +1,7 @@
 package com.example.profilessoundequalizerapp.ui.components
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -17,7 +18,7 @@ fun NavigationSetup(profilesViewModel: ProfilesViewModel) {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = "home") {
-        // Home Screen
+
         composable("home") {
             HomeScreen(
                 profilesViewModel = profilesViewModel,
@@ -28,7 +29,7 @@ fun NavigationSetup(profilesViewModel: ProfilesViewModel) {
             )
         }
 
-        // New Profile Screen
+
         composable("new_profile") {
             NewProfileScreen(
                 onProfileCreated = { profile ->
@@ -41,9 +42,10 @@ fun NavigationSetup(profilesViewModel: ProfilesViewModel) {
 
         // Edit Profile Screen
         composable("edit/{profileId}") { backStackEntry ->
-            val profileId = backStackEntry.arguments?.getInt("profileId") ?: 0
-            val profile = profilesViewModel.profileList.value?.firstOrNull { it.id == profileId }
+            val profileId:String = backStackEntry.arguments?.getString("profileId") ?: "0"
+            val profile = profilesViewModel.profileList.value?.firstOrNull { it.id == profileId.toInt() }
             if (profile != null) {
+                println(profile)
                 EditSoundProfileScreen(
                     profile = profile,
                     onProfileUpdated = { updatedProfile ->

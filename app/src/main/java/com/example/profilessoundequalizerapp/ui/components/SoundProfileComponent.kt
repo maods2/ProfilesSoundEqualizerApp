@@ -1,4 +1,4 @@
-package com.example.profilessoundequalizerapp.view
+package com.example.profilessoundequalizerapp.ui.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.example.profilessoundequalizerapp.model.entity.Profile
 
 @Composable
-fun ProfileScreen(
+fun SoundProfileComponent(
     profile: Profile,
     onProfileUpdated: (Profile) -> Unit
 ) {

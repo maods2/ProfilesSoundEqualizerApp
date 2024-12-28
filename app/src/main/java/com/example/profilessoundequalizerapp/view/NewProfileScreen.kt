@@ -9,6 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.profilessoundequalizerapp.model.entity.Profile
+import com.example.profilessoundequalizerapp.ui.components.SoundProfileComponent
 
 @Composable
 fun NewProfileScreen(
@@ -20,7 +21,7 @@ fun NewProfileScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(16.dp, top = 50.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -30,7 +31,7 @@ fun NewProfileScreen(
             label = { Text("Profile Name") },
             modifier = Modifier.fillMaxWidth()
         )
-        ProfileScreen(
+        SoundProfileComponent(
             profile = newProfile,
             onProfileUpdated = onProfileCreated
         )

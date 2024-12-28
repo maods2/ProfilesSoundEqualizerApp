@@ -8,12 +8,13 @@ import com.example.profilessoundequalizerapp.model.entity.Profile
 
 @Database(entities = [Profile::class], version = 1)
 @TypeConverters(Converters::class)
-abstract class SoundEqualizerDB : RoomDatabase(){
+abstract class SoundProfileDatabase : RoomDatabase(){
 
     companion object {
-        const val NAME = "sound_profiles_db"
+        const val NAME = "sound_profiles.db"
     }
 
-    abstract fun getProfileDao() : ProfileDao
+    abstract val dao: ProfileDao
+
 
 }

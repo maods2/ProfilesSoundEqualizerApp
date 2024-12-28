@@ -9,8 +9,8 @@ import com.example.profilessoundequalizerapp.model.entity.Profile
 
 @Dao
 interface ProfileDao {
-    @Insert
-    suspend fun addProfile(profile: Profile)
+    @Upsert
+    suspend fun upsertProfile(profile: Profile)
 
     @Delete
     suspend fun deleteProfile(profile: Profile)
