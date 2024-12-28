@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.profilessoundequalizerapp.SoundProfileManager
 import com.example.profilessoundequalizerapp.view.EditSoundProfileScreen
 import com.example.profilessoundequalizerapp.view.HomeScreen
 import com.example.profilessoundequalizerapp.view.NewProfileScreen
@@ -14,7 +15,10 @@ import kotlinx.coroutines.runBlocking
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
-fun NavigationSetup(profilesViewModel: ProfilesViewModel) {
+fun NavigationSetup(
+    profilesViewModel: ProfilesViewModel,
+    soundProfileManager: SoundProfileManager
+) {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = "home") {
@@ -33,6 +37,7 @@ fun NavigationSetup(profilesViewModel: ProfilesViewModel) {
         composable("new_profile") {
             NewProfileScreen(
                 onProfileCreated = { profile ->
+                        soundProfileManager.updateProfile(profile)
                         profilesViewModel.insertProfile(profile)
                         navController.popBackStack()
                 },
@@ -50,6 +55,7 @@ fun NavigationSetup(profilesViewModel: ProfilesViewModel) {
                     profile = profile,
                     onProfileUpdated = { updatedProfile ->
                         runBlocking{
+                            soundProfileManager.updateProfile(updatedProfile)
                             profilesViewModel.insertProfile(updatedProfile)
                             navController.popBackStack()
                         }

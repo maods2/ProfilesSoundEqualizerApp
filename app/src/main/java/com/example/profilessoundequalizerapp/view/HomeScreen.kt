@@ -11,13 +11,11 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.Alignment
-import com.example.profilessoundequalizerapp.model.dao.ProfileRepository
 import com.example.profilessoundequalizerapp.model.entity.Profile
 import com.example.profilessoundequalizerapp.viewmodel.ProfilesViewModel
 
@@ -51,7 +49,8 @@ fun HomeScreen(
                     items(nonNullProfiles) { profile ->
                         ProfileItem(
                             profile = profile,
-                            onClick = { onEditProfile(profile)}
+                            onSelectProfile = { onEditProfile(profile)},
+                            onDelete = {  profilesViewModel.deleteProfile(profile)}
 
                         )
                     }
@@ -72,12 +71,16 @@ fun HomeScreen(
 }
 
 @Composable
-fun ProfileItem(profile: Profile, onClick: () -> Unit) {
+fun ProfileItem(
+    profile: Profile,
+    onSelectProfile: () -> Unit,
+    onDelete: () -> Unit
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 4.dp)
-            .clickable(onClick = onClick),
+            .clickable(onClick = onSelectProfile),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Text(
@@ -85,5 +88,13 @@ fun ProfileItem(profile: Profile, onClick: () -> Unit) {
             modifier = Modifier.padding(16.dp),
             style = MaterialTheme.typography.bodySmall
         )
+
+        Button(
+            onClick = onDelete,
+            modifier = Modifier
+                .padding(8.dp)
+        ) {
+            Text(text = "Delete")
+        }
     }
 }

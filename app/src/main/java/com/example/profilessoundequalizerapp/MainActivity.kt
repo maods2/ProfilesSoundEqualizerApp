@@ -17,6 +17,7 @@ import com.example.profilessoundequalizerapp.viewmodel.ProfilesViewModel
 
 class MainActivity : ComponentActivity() {
 
+    private lateinit var soundProfileManager: SoundProfileManager
 
     private val db by lazy {
         Room.databaseBuilder(
@@ -39,11 +40,15 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        soundProfileManager = SoundProfileManager(this)
 
         setContent {
             ProfilesSoundEqualizerAppTheme {
                 Surface(color = MaterialTheme.colorScheme.background) {
-                    NavigationSetup(profilesViewModel = viewModel)
+                    NavigationSetup(
+                        profilesViewModel = viewModel,
+                        soundProfileManager = soundProfileManager
+                    )
                 }
             }
         }
