@@ -2,6 +2,7 @@ package com.example.profilessoundequalizerapp.view
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
@@ -13,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.Alignment
 import com.example.profilessoundequalizerapp.model.dao.ProfileRepository
 import com.example.profilessoundequalizerapp.model.entity.Profile
 
@@ -24,24 +26,37 @@ fun HomeScreen(
 ) {
     val profiles = repository.profiles.collectAsState().value
 
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        Text(
-            text = "Create a new sound profile or edit an existing one!",
-            style = MaterialTheme.typography.headlineSmall,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-        Button(onClick = onCreateNewProfile, modifier = Modifier.fillMaxWidth()) {
-            Text("Create New Profile")
-        }
-        Spacer(modifier = Modifier.height(16.dp))
-        LazyColumn {
-            items(profiles) { profile ->
-                ProfileItem(profile = profile, onClick = { onEditProfile(profile) })
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = 80.dp) // Ajuste o padding inferior conforme necessário
+        ) {
+            Text(
+                text = "Create a new sound profile or edit an existing one!",
+                style = MaterialTheme.typography.headlineSmall,
+                modifier = Modifier.padding(bottom = 16.dp, top = 25.dp)
+            )
+
+            LazyColumn {
+                items(profiles) { profile ->
+                    ProfileItem(profile = profile, onClick = { onEditProfile(profile) })
+                }
             }
+        }
+
+        Button(
+            onClick = onCreateNewProfile,
+            modifier = Modifier
+                .align(Alignment.BottomCenter) // Alinha o botão ao fundo centralizado
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+            Text("Create New Profile")
         }
     }
 }
